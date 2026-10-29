@@ -1,0 +1,20 @@
+{
+ "frozen_utc": "2026-10-29 09:21:24.486472+00:00",
+ "sha256": {
+  "A": "7a972abd333fa01ee2071818db4fcc43cd2cd42409c5a01155a77d17bbc52b92",
+  "B": "7de1beeea51caf8447c0ee5a6a1ea21e18e327525c0137398cbdc0d04c246eb3",
+  "C": "602544b8b862c90b6bac63be492a649e29caa461f129dab15e75c05d975c9c58"
+ },
+ "selection": {
+  "game_id": 22300906,
+  "date": "2024-03-07 00:00:00",
+  "home": "DEN",
+  "away": "BOS",
+  "home_pregame_wpct": 0.6774193548387096,
+  "away_pregame_wpct": 0.7868852459016393,
+  "combined_wpct": 1.4643046007403488,
+  "core_players": 17,
+  "n_candidates": 92,
+  "rule": "Pregame-only rule: in the last ~6 weeks of the final season, among games where every player on both active lists with >=15 expected minutes has >=100 prior NBA games, pick the game with the highest combined pregame win percentage of the two teams (ties: earliest date)."
+ }
+}

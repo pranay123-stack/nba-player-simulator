@@ -8,3 +8,6 @@ outputs/
 !outputs/.gitkeep
 *.npz
 .DS_Store
+
+# Dashboard bundle for hosted deploys (scripts/export_dashboard_data.py)
+!app/data/**/*.npz

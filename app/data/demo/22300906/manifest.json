@@ -1,0 +1,465 @@
+{
+ "written_utc": "2026-10-29 09:21:28.254479+00:00",
+ "config": {
+  "data": {
+   "raw_dir": "data/raw",
+   "processed_dir": "data/processed",
+   "include_playoffs": false
+  },
+  "features": {
+   "halflife_games": 10,
+   "long_halflife_games": 40,
+   "recent_halflife_games": 3,
+   "shooting_prior_attempts": {
+    "fg2": 60,
+    "fg3": 40,
+    "ft": 30
+   },
+   "rate_prior_minutes": 150,
+   "count_prior_games": 6,
+   "team_halflife_games": 15
+  },
+  "models": {
+   "max_regulation_minutes": 48,
+   "overtime_period_minutes": 5,
+   "min_players_on_court": 5,
+   "dispersion_floor": 0.02,
+   "train_weight_halflife_days": 365,
+   "recalibration_days": 30,
+   "min_minutes_if_played": 0.25,
+   "latent_factors": true,
+   "blowout_adjustment": true
+  },
+  "backtest": {
+   "eval_seasons": [
+    "2021-22",
+    "2022-23",
+    "2023-24"
+   ],
+   "train_lookback_seasons": 3,
+   "refit_every_days": 14,
+   "n_simulations": 2000,
+   "joint_samples": 400,
+   "seed": 20251029,
+   "models": [
+    "A",
+    "B",
+    "C0",
+    "C"
+   ]
+  },
+  "evaluation": {
+   "bootstrap_reps": 2000,
+   "thresholds": {
+    "pts": [
+     10,
+     15,
+     20,
+     25,
+     30
+    ],
+    "reb": [
+     5,
+     8,
+     10
+    ],
+    "ast": [
+     3,
+     5,
+     8
+    ],
+    "pra": [
+     20,
+     30,
+     40
+    ],
+    "fg3m": [
+     2,
+     3
+    ],
+    "minutes": [
+     20,
+     30
+    ]
+   }
+  },
+  "demo": {
+   "n_simulations": 10000,
+   "seed": 42
+  },
+  "_config_path": "/home/pranay-hft/Desktop/nba-player-simulator/configs/default.yaml"
+ },
+ "dataset": {
+  "source": "github.com/NocturneBear/NBA-Data-2010-2024 (MIT); underlying data NBA.com boxscoretraditionalv3",
+  "files": {
+   "regular_season_box_scores_2010_2024_part_1.csv": "ca9636d08c577e3d752f69e32f90b173f4c3374c15f4dc8494b655049fdfc557",
+   "regular_season_box_scores_2010_2024_part_2.csv": "5643af8a9f15ce3540dced759375ca79e77c71644e23270136f23b7a57fc182d",
+   "regular_season_box_scores_2010_2024_part_3.csv": "65a01fee3df865a272e578cf4b365dce7dbc62eef2ce6f15f0844cf6694ef375"
+  },
+  "n_player_rows": 424478,
+  "n_games": 16658,
+  "seasons": [
+   "2010-11",
+   "2011-12",
+   "2012-13",
+   "2013-14",
+   "2014-15",
+   "2015-16",
+   "2016-17",
+   "2017-18",
+   "2018-19",
+   "2019-20",
+   "2020-21",
+   "2021-22",
+   "2022-23",
+   "2023-24"
+  ],
+  "date_min": "2010-10-26",
+  "date_max": "2024-04-14",
+  "dataset_id": "eedb6060747f242f"
+ },
+ "code": {
+  "source_sha256": "90fdec7f655150a13e541a07352b73d014cc338419c9248ca5227fabff1625b4",
+  "n_files": 29,
+  "git_commit": null,
+  "git_dirty": null
+ },
+ "environment": {
+  "python": "3.12.3",
+  "numpy": "2.5.4",
+  "pandas": "3.1.0",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39"
+ },
+ "kind": "historical_demo",
+ "game_id": 22300906,
+ "date": "2024-03-07",
+ "home": "DEN",
+ "away": "BOS",
+ "n_simulations": 10000,
+ "seed": 42,
+ "models": [
+  "A",
+  "B",
+  "C"
+ ],
+ "selection": {
+  "game_id": 22300906,
+  "date": "2024-03-07 00:00:00",
+  "home": "DEN",
+  "away": "BOS",
+  "home_pregame_wpct": 0.6774193548387096,
+  "away_pregame_wpct": 0.7868852459016393,
+  "combined_wpct": 1.4643046007403488,
+  "core_players": 17,
+  "n_candidates": 92,
+  "rule": "Pregame-only rule: in the last ~6 weeks of the final season, among games where every player on both active lists with >=15 expected minutes has >=100 prior NBA games, pick the game with the highest combined pregame win percentage of the two teams (ties: earliest date)."
+ },
+ "frozen": {
+  "frozen_utc": "2026-10-29 09:21:24.486472+00:00",
+  "sha256": {
+   "A": "7a972abd333fa01ee2071818db4fcc43cd2cd42409c5a01155a77d17bbc52b92",
+   "B": "7de1beeea51caf8447c0ee5a6a1ea21e18e327525c0137398cbdc0d04c246eb3",
+   "C": "602544b8b862c90b6bac63be492a649e29caa461f129dab15e75c05d975c9c58"
+  },
+  "selection": {
+   "game_id": 22300906,
+   "date": "2024-03-07 00:00:00",
+   "home": "DEN",
+   "away": "BOS",
+   "home_pregame_wpct": 0.6774193548387096,
+   "away_pregame_wpct": 0.7868852459016393,
+   "combined_wpct": 1.4643046007403488,
+   "core_players": 17,
+   "n_candidates": 92,
+   "rule": "Pregame-only rule: in the last ~6 weeks of the final season, among games where every player on both active lists with >=15 expected minutes has >=100 prior NBA games, pick the game with the highest combined pregame win percentage of the two teams (ties: earliest date)."
+  }
+ },
+ "prediction_meta": {
+  "A": {
+   "game_id": 22300906,
+   "model": "A",
+   "n_simulations": 10000,
+   "seed_sequence": [
+    42,
+    0
+   ],
+   "information_cutoff": "games dated before 2024-03-07 (cutoff = 00:00 local on game day)",
+   "train_date_max": "2024-03-06",
+   "n_train_rows": 114537,
+   "train_seasons": [
+    "2020-21",
+    "2021-22",
+    "2022-23",
+    "2023-24"
+   ],
+   "code": {
+    "source_sha256": "90fdec7f655150a13e541a07352b73d014cc338419c9248ca5227fabff1625b4",
+    "n_files": 29,
+    "git_commit": null,
+    "git_dirty": null
+   },
+   "model_description": "independent players and stats; per-game NB means; minutes drawn independently"
+  },
+  "B": {
+   "game_id": 22300906,
+   "model": "B",
+   "n_simulations": 10000,
+   "seed_sequence": [
+    42,
+    1
+   ],
+   "information_cutoff": "games dated before 2024-03-07 (cutoff = 00:00 local on game day)",
+   "train_date_max": "2024-03-06",
+   "n_train_rows": 114537,
+   "train_seasons": [
+    "2020-21",
+    "2021-22",
+    "2022-23",
+    "2023-24"
+   ],
+   "code": {
+    "source_sha256": "90fdec7f655150a13e541a07352b73d014cc338419c9248ca5227fabff1625b4",
+    "n_files": 29,
+    "git_commit": null,
+    "git_dirty": null
+   },
+   "model_description": "A + simulated minutes (play/no-play, rotation features, team-minute constraint, OT); stats NB given minutes"
+  },
+  "C": {
+   "game_id": 22300906,
+   "model": "C",
+   "n_simulations": 10000,
+   "seed_sequence": [
+    42,
+    2
+   ],
+   "information_cutoff": "games dated before 2024-03-07 (cutoff = 00:00 local on game day)",
+   "train_date_max": "2024-03-06",
+   "n_train_rows": 114537,
+   "train_seasons": [
+    "2020-21",
+    "2021-22",
+    "2022-23",
+    "2023-24"
+   ],
+   "code": {
+    "source_sha256": "90fdec7f655150a13e541a07352b73d014cc338419c9248ca5227fabff1625b4",
+    "n_files": 29,
+    "git_commit": null,
+    "git_dirty": null
+   },
+   "model_description": "B + pregame game conditions + shared dependence: team totals drawn jointly (within-team correlation, cross-team correlation, team shot-mix and shooting shocks) and allocated to players; blowout minutes"
+  }
+ },
+ "figures": {
+  "points_distributions": "/home/pranay-hft/Desktop/nba-player-simulator/reports/figures/demo_22300906/points_distributions.png",
+  "pred_vs_actual": "/home/pranay-hft/Desktop/nba-player-simulator/reports/figures/demo_22300906/pred_vs_actual.png",
+  "coverage": "/home/pranay-hft/Desktop/nba-player-simulator/reports/figures/demo_22300906/coverage.png",
+  "team_points": "/home/pranay-hft/Desktop/nba-player-simulator/reports/figures/demo_22300906/team_points.png"
+ },
+ "backtest_context": {
+  "run": "main",
+  "table": [
+   {
+    "model": "A",
+    "stat": "ast",
+    "cov50": 0.7585670445827295,
+    "cov80": 0.9172704799249851,
+    "cov95": 0.9739472338249083,
+    "mass80": 0.9221460659790299,
+    "crps": 0.8072162458949579,
+    "n": 93848
+   },
+   {
+    "model": "A",
+    "stat": "minutes",
+    "cov50": 0.5547374477879123,
+    "cov80": 0.8343917824567385,
+    "cov95": 0.9615974767709488,
+    "mass80": 0.8,
+    "crps": 4.167696947426657,
+    "n": 93848
+   },
+   {
+    "model": "A",
+    "stat": "pra",
+    "cov50": 0.4610114227261103,
+    "cov80": 0.7158703435342255,
+    "cov95": 0.8757671980223339,
+    "mass80": 0.845862511721081,
+    "crps": 4.298441026148666,
+    "n": 93848
+   },
+   {
+    "model": "A",
+    "stat": "pts",
+    "cov50": 0.6060438155314978,
+    "cov80": 0.8580044326996846,
+    "cov95": 0.960723723467735,
+    "mass80": 0.8659940488875629,
+    "crps": 3.0452359461336416,
+    "n": 93848
+   },
+   {
+    "model": "A",
+    "stat": "reb",
+    "cov50": 0.6890184127525361,
+    "cov80": 0.8975684084903248,
+    "cov95": 0.9699727218480948,
+    "mass80": 0.8937316245418123,
+    "crps": 1.2869464392741454,
+    "n": 93848
+   },
+   {
+    "model": "B",
+    "stat": "ast",
+    "cov50": 0.7653013383343279,
+    "cov80": 0.9220761230926605,
+    "cov95": 0.9828978774188049,
+    "mass80": 0.9180145181570198,
+    "crps": 0.7620905397877419,
+    "n": 93848
+   },
+   {
+    "model": "B",
+    "stat": "minutes",
+    "cov50": 0.562121728752877,
+    "cov80": 0.8444719120279601,
+    "cov95": 0.9691948682976729,
+    "mass80": 0.8,
+    "crps": 3.5241352008866853,
+    "n": 93848
+   },
+   {
+    "model": "B",
+    "stat": "pra",
+    "cov50": 0.5961235188815958,
+    "cov80": 0.8505668740942801,
+    "cov95": 0.967969482567556,
+    "mass80": 0.8551693269968459,
+    "crps": 3.7943969558807864,
+    "n": 93848
+   },
+   {
+    "model": "B",
+    "stat": "pts",
+    "cov50": 0.6376268007842468,
+    "cov80": 0.8712705651692098,
+    "cov95": 0.972977580768903,
+    "mass80": 0.8689316021652034,
+    "crps": 2.786240925709658,
+    "n": 93848
+   },
+   {
+    "model": "B",
+    "stat": "reb",
+    "cov50": 0.6921085158980479,
+    "cov80": 0.8959274571647771,
+    "cov95": 0.9774529025658512,
+    "mass80": 0.8931788370556645,
+    "crps": 1.1704050193584308,
+    "n": 93848
+   },
+   {
+    "model": "C",
+    "stat": "ast",
+    "cov50": 0.7646620066490495,
+    "cov80": 0.921106470036655,
+    "cov95": 0.9830044326996846,
+    "mass80": 0.9178728049612139,
+    "crps": 0.7549268479855724,
+    "n": 93848
+   },
+   {
+    "model": "C",
+    "stat": "minutes",
+    "cov50": 0.5594685022589719,
+    "cov80": 0.8445997783650158,
+    "cov95": 0.9697276447020714,
+    "mass80": 0.8,
+    "crps": 3.5250707184492702,
+    "n": 93848
+   },
+   {
+    "model": "C",
+    "stat": "pra",
+    "cov50": 0.594919444207655,
+    "cov80": 0.8502472082516409,
+    "cov95": 0.9682039041854914,
+    "mass80": 0.8551390599693122,
+    "crps": 3.781914846464496,
+    "n": 93848
+   },
+   {
+    "model": "C",
+    "stat": "pts",
+    "cov50": 0.6299974426732589,
+    "cov80": 0.8663903333049185,
+    "cov95": 0.9712726962748274,
+    "mass80": 0.8686422566277384,
+    "crps": 2.780816798586544,
+    "n": 93848
+   },
+   {
+    "model": "C",
+    "stat": "reb",
+    "cov50": 0.6900093768647174,
+    "cov80": 0.894435683232461,
+    "cov95": 0.9773143807007075,
+    "mass80": 0.8931485806836587,
+    "crps": 1.1662215733659749,
+    "n": 93848
+   },
+   {
+    "model": "C0",
+    "stat": "ast",
+    "cov50": 0.7655357599522632,
+    "cov80": 0.9221826783735402,
+    "cov95": 0.9832388543176199,
+    "mass80": 0.9178697042025403,
+    "crps": 0.754916846821456,
+    "n": 93848
+   },
+   {
+    "model": "C0",
+    "stat": "minutes",
+    "cov50": 0.5625372943483079,
+    "cov80": 0.8452071434660302,
+    "cov95": 0.9689817577359134,
+    "mass80": 0.8,
+    "crps": 3.524548997171328,
+    "n": 93848
+   },
+   {
+    "model": "C0",
+    "stat": "pra",
+    "cov50": 0.5973382490836245,
+    "cov80": 0.8519734038018925,
+    "cov95": 0.9685875031966584,
+    "mass80": 0.8552473361179781,
+    "crps": 3.7802121147786845,
+    "n": 93848
+   },
+   {
+    "model": "C0",
+    "stat": "pts",
+    "cov50": 0.6370300912113205,
+    "cov80": 0.8713451538658256,
+    "cov95": 0.9733931463643338,
+    "mass80": 0.8690962300741625,
+    "crps": 2.7800226280687923,
+    "n": 93848
+   },
+   {
+    "model": "C0",
+    "stat": "reb",
+    "cov50": 0.692065893785696,
+    "cov80": 0.8956397579064018,
+    "cov95": 0.9777406018242264,
+    "mass80": 0.8932326048503965,
+    "crps": 1.1664166994261997,
+    "n": 93848
+   }
+  ]
+ }
+}

@@ -1,0 +1,8 @@
+# Streamlit Community Cloud installs this file. The hosted dashboard only reads the bundled
+# results in app/data/, so the simulation package itself is not needed there.
+# Full local install (CLI, backtest, tests): pip install -e ".[dev,app]"
+streamlit==1.66.1
+pandas==3.1.0
+numpy==2.5.4
+altair==6.3.0
+pyarrow==26.0.0

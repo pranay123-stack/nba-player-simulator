@@ -6,7 +6,9 @@ Every number is read from saved outputs (backtest summaries, frozen demo predict
 
 from __future__ import annotations
 
+import importlib.util
 import json
+import os
 from pathlib import Path
 
 import altair as alt
@@ -16,7 +18,21 @@ import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "outputs"
-RUN = OUT / "backtest" / "main"
+BUNDLE = ROOT / "app" / "data"   # small committed copy (scripts/export_dashboard_data.py) for hosted deploys
+
+
+def _data_source() -> tuple[Path, Path, str]:
+    """Prefer full local outputs; fall back to the committed bundle (e.g. on Streamlit Community Cloud)."""
+    local = OUT / "backtest" / "main" / "summary_overall.csv"
+    if os.environ.get("NBA_SIM_DASHBOARD_DATA") != "bundle" and local.exists():
+        return OUT / "backtest" / "main", OUT / "demo", "local outputs"
+    return BUNDLE / "backtest", BUNDLE / "demo", "bundled results"
+
+
+RUN, DEMO_DIR, DATA_SOURCE = _data_source()
+# The live simulator needs the processed dataset and the installed package, which only exist locally.
+SIMULATOR_AVAILABLE = ((ROOT / "data" / "processed" / "player_games.parquet").exists()
+                       and importlib.util.find_spec("nba_sim") is not None)
 
 MODEL_NAME = {"A": "Baseline", "B": "+ Playing time", "C0": "+ Game conditions", "C": "Full model"}
 MODEL_LONG = {
@@ -84,7 +100,7 @@ def card(col, big, label, cls="good"):
 
 
 bt = load_backtest()
-demos = sorted(p for p in (OUT / "demo").glob("*") if (p / "comparison.csv").exists()) if (OUT / "demo").exists() else []
+demos = sorted(p for p in DEMO_DIR.glob("*") if (p / "comparison.csv").exists()) if DEMO_DIR.exists() else []
 
 st.title("🏀 NBA Player Outcome Simulator")
 st.markdown('<div class="hero">Before a game, we forecast the <b>full range</b> of what every player might do '
@@ -326,7 +342,11 @@ with tab4:
     date = c3.date_input("Game date", pd.Timestamp("2024-03-20"), min_value=pd.Timestamp("2011-01-01"),
                          max_value=pd.Timestamp("2024-04-15"))
     model = c4.selectbox("Model", ["C", "B", "A"], format_func=lambda m: MODEL_NAME[m])
-    if home == away:
+    if not SIMULATOR_AVAILABLE:
+        st.info("**The live simulator runs on the local install only.** It needs the full NBA dataset, which "
+                "isn't hosted here. Tabs ①–③ show the saved results from the full backtest and the demo game. "
+                "To run it: clone the repo, follow `data/README.md`, then `streamlit run app/streamlit_app.py`.")
+    elif home == away:
         st.warning("Pick two different teams.")
     elif st.button("▶ Run 10,000 simulations", type="primary"):
         from nba_sim.config import load_config, resolve

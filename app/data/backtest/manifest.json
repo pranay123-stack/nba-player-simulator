@@ -1,0 +1,392 @@
+{
+ "written_utc": "2026-10-29 08:27:47.050120+00:00",
+ "config": {
+  "data": {
+   "raw_dir": "data/raw",
+   "processed_dir": "data/processed",
+   "include_playoffs": false
+  },
+  "features": {
+   "halflife_games": 10,
+   "long_halflife_games": 40,
+   "recent_halflife_games": 3,
+   "shooting_prior_attempts": {
+    "fg2": 60,
+    "fg3": 40,
+    "ft": 30
+   },
+   "rate_prior_minutes": 150,
+   "count_prior_games": 6,
+   "team_halflife_games": 15
+  },
+  "models": {
+   "max_regulation_minutes": 48,
+   "overtime_period_minutes": 5,
+   "min_players_on_court": 5,
+   "dispersion_floor": 0.02,
+   "train_weight_halflife_days": 365,
+   "recalibration_days": 30,
+   "min_minutes_if_played": 0.25,
+   "latent_factors": true,
+   "blowout_adjustment": true
+  },
+  "backtest": {
+   "eval_seasons": [
+    "2021-22",
+    "2022-23",
+    "2023-24"
+   ],
+   "train_lookback_seasons": 3,
+   "refit_every_days": 14,
+   "n_simulations": 2000,
+   "joint_samples": 400,
+   "seed": 20251029,
+   "models": [
+    "A",
+    "B",
+    "C0",
+    "C"
+   ]
+  },
+  "evaluation": {
+   "bootstrap_reps": 2000,
+   "thresholds": {
+    "pts": [
+     10,
+     15,
+     20,
+     25,
+     30
+    ],
+    "reb": [
+     5,
+     8,
+     10
+    ],
+    "ast": [
+     3,
+     5,
+     8
+    ],
+    "pra": [
+     20,
+     30,
+     40
+    ],
+    "fg3m": [
+     2,
+     3
+    ],
+    "minutes": [
+     20,
+     30
+    ]
+   }
+  },
+  "demo": {
+   "n_simulations": 10000,
+   "seed": 42
+  },
+  "_config_path": "/home/pranay-hft/Desktop/nba-player-simulator/configs/default.yaml"
+ },
+ "dataset": {
+  "source": "github.com/NocturneBear/NBA-Data-2010-2024 (MIT); underlying data NBA.com boxscoretraditionalv3",
+  "files": {
+   "regular_season_box_scores_2010_2024_part_1.csv": "ca9636d08c577e3d752f69e32f90b173f4c3374c15f4dc8494b655049fdfc557",
+   "regular_season_box_scores_2010_2024_part_2.csv": "5643af8a9f15ce3540dced759375ca79e77c71644e23270136f23b7a57fc182d",
+   "regular_season_box_scores_2010_2024_part_3.csv": "65a01fee3df865a272e578cf4b365dce7dbc62eef2ce6f15f0844cf6694ef375"
+  },
+  "n_player_rows": 424478,
+  "n_games": 16658,
+  "seasons": [
+   "2010-11",
+   "2011-12",
+   "2012-13",
+   "2013-14",
+   "2014-15",
+   "2015-16",
+   "2016-17",
+   "2017-18",
+   "2018-19",
+   "2019-20",
+   "2020-21",
+   "2021-22",
+   "2022-23",
+   "2023-24"
+  ],
+  "date_min": "2010-10-26",
+  "date_max": "2024-04-14",
+  "dataset_id": "eedb6060747f242f"
+ },
+ "code": {
+  "source_sha256": "99f449b3d25f1b8ba2ce9c3379b2386c08cb4cf74f0616789cdf8d2b9d13dfa5",
+  "n_files": 29,
+  "git_commit": null,
+  "git_dirty": null
+ },
+ "environment": {
+  "python": "3.12.3",
+  "numpy": "2.5.4",
+  "pandas": "3.1.0",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39"
+ },
+ "kind": "backtest",
+ "started_utc": "2026-10-29 07:48:28.307794+00:00",
+ "prediction_stage": {
+  "windows": [
+   {
+    "idx": 0,
+    "season": "2021-22",
+    "origin": "2021-10-19",
+    "end": "2021-11-02"
+   },
+   {
+    "idx": 1,
+    "season": "2021-22",
+    "origin": "2021-11-02",
+    "end": "2021-11-16"
+   },
+   {
+    "idx": 2,
+    "season": "2021-22",
+    "origin": "2021-11-16",
+    "end": "2021-11-30"
+   },
+   {
+    "idx": 3,
+    "season": "2021-22",
+    "origin": "2021-11-30",
+    "end": "2021-12-14"
+   },
+   {
+    "idx": 4,
+    "season": "2021-22",
+    "origin": "2021-12-14",
+    "end": "2021-12-28"
+   },
+   {
+    "idx": 5,
+    "season": "2021-22",
+    "origin": "2021-12-28",
+    "end": "2022-01-11"
+   },
+   {
+    "idx": 6,
+    "season": "2021-22",
+    "origin": "2022-01-11",
+    "end": "2022-01-25"
+   },
+   {
+    "idx": 7,
+    "season": "2021-22",
+    "origin": "2022-01-25",
+    "end": "2022-02-08"
+   },
+   {
+    "idx": 8,
+    "season": "2021-22",
+    "origin": "2022-02-08",
+    "end": "2022-02-22"
+   },
+   {
+    "idx": 9,
+    "season": "2021-22",
+    "origin": "2022-02-22",
+    "end": "2022-03-08"
+   },
+   {
+    "idx": 10,
+    "season": "2021-22",
+    "origin": "2022-03-08",
+    "end": "2022-03-22"
+   },
+   {
+    "idx": 11,
+    "season": "2021-22",
+    "origin": "2022-03-22",
+    "end": "2022-04-05"
+   },
+   {
+    "idx": 12,
+    "season": "2021-22",
+    "origin": "2022-04-05",
+    "end": "2022-04-19"
+   },
+   {
+    "idx": 13,
+    "season": "2022-23",
+    "origin": "2022-10-18",
+    "end": "2022-11-01"
+   },
+   {
+    "idx": 14,
+    "season": "2022-23",
+    "origin": "2022-11-01",
+    "end": "2022-11-15"
+   },
+   {
+    "idx": 15,
+    "season": "2022-23",
+    "origin": "2022-11-15",
+    "end": "2022-11-29"
+   },
+   {
+    "idx": 16,
+    "season": "2022-23",
+    "origin": "2022-11-29",
+    "end": "2022-12-13"
+   },
+   {
+    "idx": 17,
+    "season": "2022-23",
+    "origin": "2022-12-13",
+    "end": "2022-12-27"
+   },
+   {
+    "idx": 18,
+    "season": "2022-23",
+    "origin": "2022-12-27",
+    "end": "2023-01-10"
+   },
+   {
+    "idx": 19,
+    "season": "2022-23",
+    "origin": "2023-01-10",
+    "end": "2023-01-24"
+   },
+   {
+    "idx": 20,
+    "season": "2022-23",
+    "origin": "2023-01-24",
+    "end": "2023-02-07"
+   },
+   {
+    "idx": 21,
+    "season": "2022-23",
+    "origin": "2023-02-07",
+    "end": "2023-02-21"
+   },
+   {
+    "idx": 22,
+    "season": "2022-23",
+    "origin": "2023-02-21",
+    "end": "2023-03-07"
+   },
+   {
+    "idx": 23,
+    "season": "2022-23",
+    "origin": "2023-03-07",
+    "end": "2023-03-21"
+   },
+   {
+    "idx": 24,
+    "season": "2022-23",
+    "origin": "2023-03-21",
+    "end": "2023-04-04"
+   },
+   {
+    "idx": 25,
+    "season": "2022-23",
+    "origin": "2023-04-04",
+    "end": "2023-04-18"
+   },
+   {
+    "idx": 26,
+    "season": "2023-24",
+    "origin": "2023-10-24",
+    "end": "2023-11-07"
+   },
+   {
+    "idx": 27,
+    "season": "2023-24",
+    "origin": "2023-11-07",
+    "end": "2023-11-21"
+   },
+   {
+    "idx": 28,
+    "season": "2023-24",
+    "origin": "2023-11-21",
+    "end": "2023-12-05"
+   },
+   {
+    "idx": 29,
+    "season": "2023-24",
+    "origin": "2023-12-05",
+    "end": "2023-12-19"
+   },
+   {
+    "idx": 30,
+    "season": "2023-24",
+    "origin": "2023-12-19",
+    "end": "2024-01-02"
+   },
+   {
+    "idx": 31,
+    "season": "2023-24",
+    "origin": "2024-01-02",
+    "end": "2024-01-16"
+   },
+   {
+    "idx": 32,
+    "season": "2023-24",
+    "origin": "2024-01-16",
+    "end": "2024-01-30"
+   },
+   {
+    "idx": 33,
+    "season": "2023-24",
+    "origin": "2024-01-30",
+    "end": "2024-02-13"
+   },
+   {
+    "idx": 34,
+    "season": "2023-24",
+    "origin": "2024-02-13",
+    "end": "2024-02-27"
+   },
+   {
+    "idx": 35,
+    "season": "2023-24",
+    "origin": "2024-02-27",
+    "end": "2024-03-12"
+   },
+   {
+    "idx": 36,
+    "season": "2023-24",
+    "origin": "2024-03-12",
+    "end": "2024-03-26"
+   },
+   {
+    "idx": 37,
+    "season": "2023-24",
+    "origin": "2024-03-26",
+    "end": "2024-04-09"
+   },
+   {
+    "idx": 38,
+    "season": "2023-24",
+    "origin": "2024-04-09",
+    "end": "2024-04-23"
+   }
+  ],
+  "models": [
+   "A",
+   "B",
+   "C0",
+   "C"
+  ],
+  "n_sims": 2000,
+  "seasons": [
+   "2021-22",
+   "2022-23",
+   "2023-24"
+  ]
+ },
+ "score_files": {
+  "player": "/home/pranay-hft/Desktop/nba-player-simulator/outputs/backtest/main/scores/player_scores.parquet",
+  "threshold": "/home/pranay-hft/Desktop/nba-player-simulator/outputs/backtest/main/scores/threshold_scores.parquet",
+  "team": "/home/pranay-hft/Desktop/nba-player-simulator/outputs/backtest/main/scores/team_scores.parquet",
+  "joint": "/home/pranay-hft/Desktop/nba-player-simulator/outputs/backtest/main/scores/joint_scores.parquet"
+ },
+ "n_simulations": 2000
+}
