@@ -64,7 +64,7 @@ st.markdown("""
 .card .big {font-size: 2.3rem; font-weight: 700; line-height: 1.1;}
 .card .lbl {color: #aab1bd; font-size: 0.95rem; margin-top: 6px; line-height: 1.4;}
 .good {color: #5cd68a;} .neutral {color: #f2c14e;} .accent {color: #f28e2b;}
-.verdict {border-left: 5px solid; border-radius: 6px; padding: 12px 16px; background: #1b1f27; margin: 8px 0;}
+.verdict {border-left: 5px solid; border-radius: 6px; padding: 12px 16px; background: #1b1f27; margin: 8px 0; color: #e6e6e6;}
 .note {color: #9aa3af; font-size: 0.9rem;}
 </style>""", unsafe_allow_html=True)
 

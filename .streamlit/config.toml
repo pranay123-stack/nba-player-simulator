@@ -1,0 +1,8 @@
+# The dashboard's custom cards are designed for a dark background; lock the theme so viewers whose
+# device is in light mode still see readable text.
+[theme]
+base = "dark"
+primaryColor = "#f28e2b"
+backgroundColor = "#0e1117"
+secondaryBackgroundColor = "#1b1f27"
+textColor = "#fafafa"
