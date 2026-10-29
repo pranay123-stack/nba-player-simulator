@@ -1,0 +1,53 @@
+# Default configuration. Every run writes a copy of the resolved config into its manifest.
+data:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  # Playoff rotations differ structurally from the regular season; they are excluded from
+  # modelling by default and can be ingested for inspection only.
+  include_playoffs: false
+
+features:
+  halflife_games: 10          # EWMA half-life (player games) for rates and minutes
+  long_halflife_games: 40     # slower EWMA used for shrinkage targets and stability
+  recent_halflife_games: 3    # rotation-status EWMA (minutes / play / start)
+  shooting_prior_attempts:    # beta-binomial pseudo-attempts for shooting percentages
+    fg2: 60
+    fg3: 40
+    ft: 30
+  rate_prior_minutes: 150     # pseudo-minutes pulling per-minute rates to the league prior
+  count_prior_games: 6        # pseudo-games pulling per-game means to the league prior
+  team_halflife_games: 15     # EWMA half-life for team pace / opponent environment
+
+models:
+  max_regulation_minutes: 48
+  overtime_period_minutes: 5
+  min_players_on_court: 5
+  dispersion_floor: 0.02      # floor on 1/size of the conditional negative binomial
+  train_weight_halflife_days: 365   # recency weighting of training rows (league drift)
+  recalibration_days: 30      # GLM intercepts re-estimated on the last N training days (slopes fixed)
+  min_minutes_if_played: 0.25
+  latent_factors: true        # Model C: shared pace/team/usage shocks
+  blowout_adjustment: true    # Model C: margin-driven minutes reallocation
+
+backtest:
+  eval_seasons: ["2021-22", "2022-23", "2023-24"]
+  train_lookback_seasons: 3   # global parameters are fit on this many seasons before each origin
+  refit_every_days: 14        # rolling-origin refit cadence; features still update game by game
+  n_simulations: 2000
+  joint_samples: 400          # joint draws kept per team-game for dependency scoring
+  seed: 20251029
+  models: ["A", "B", "C0", "C"]   # C0 = C without modelled dependence/blowouts (ablation)
+
+evaluation:
+  bootstrap_reps: 2000
+  thresholds:                 # predeclared threshold events (P[stat >= t])
+    pts: [10, 15, 20, 25, 30]
+    reb: [5, 8, 10]
+    ast: [3, 5, 8]
+    pra: [20, 30, 40]
+    fg3m: [2, 3]
+    minutes: [20, 30]
+
+demo:
+  n_simulations: 10000
+  seed: 42
