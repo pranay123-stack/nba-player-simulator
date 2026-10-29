@@ -99,6 +99,22 @@ teams late in the final season, and every core player has 100 or more prior game
 `simulate` works for any date. It uses only games before that date, and the roster is every player
 active for the team in its last 10 games (exclude players with `--exclude <ids>`).
 
+## Dashboard and deployment
+
+`app/streamlit_app.py` is a presentation dashboard with five tabs: the answer, one real game, calibration,
+try it, and how it works. Locally it reads `outputs/`. Without those (e.g. on Streamlit Community Cloud)
+it falls back to `app/data/`, a 0.6 MB committed bundle of aggregate backtest results and the demo
+game's frozen predictions. The live simulator tab is disabled there because it needs the full dataset.
+
+Deploy on Streamlit Community Cloud:
+
+1. Sign in at https://share.streamlit.io with GitHub and click **Create app**.
+2. Repository `pranay123-stack/nba-player-simulator`, branch `main`, main file `app/streamlit_app.py`.
+3. Under **Advanced settings**, choose Python 3.12 (dependencies come from `requirements.txt`), then **Deploy**.
+
+After re-running the backtest or demo, refresh the bundle with
+`.venv/bin/python scripts/export_dashboard_data.py`, then commit `app/data/`.
+
 ## Outputs and reproducibility
 
 ```
