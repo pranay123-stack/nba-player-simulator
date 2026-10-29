@@ -283,11 +283,11 @@ with tab3:
             rows.append({"stat": "Team score", "model": MODEL_NAME[m], "hit rate": q["pit_in80"].iloc[0] * 100})
         df = pd.DataFrame(rows)
         dom = ["Baseline", "+ Playing time", "Full model"]
-        bars = alt.Chart(df).mark_bar().encode(
+        bars = alt.Chart(df).mark_bar(clip=True).encode(
             x=alt.X("stat:N", sort=["Minutes", "Points", "Rebounds", "Assists", "Pts+Reb+Ast", "Team score"], title=None,
                     axis=alt.Axis(labelAngle=0, labelFontSize=13)),
             xOffset=alt.XOffset("model:N", sort=dom),
-            y=alt.Y("hit rate:Q", scale=alt.Scale(domain=[50, 100]), title="% of results inside the 80% range"),
+            y=alt.Y("hit rate:Q", scale=alt.Scale(domain=[50, 100], clamp=True), title="% of results inside the 80% range"),
             color=alt.Color("model:N", scale=alt.Scale(domain=dom, range=[COLOR[d] for d in dom]),
                             legend=alt.Legend(orient="top", title=None, labelFontSize=13)),
             tooltip=["stat", "model", alt.Tooltip("hit rate:Q", format=".1f")])
@@ -320,9 +320,10 @@ with tab3:
             x=alt.X("season:N", title=None, axis=alt.Axis(labelAngle=0)), xOffset="step:N",
             y=alt.Y("improvement:Q", title="% less error"),
             color=alt.Color("step:N", scale=alt.Scale(range=[COLOR["+ Playing time"], COLOR["Full model"]]),
-                            legend=alt.Legend(orient="top", title=None)),
+                            legend=alt.Legend(orient="top", title=None, labelLimit=400, labelFontSize=13)),
             tooltip=["season", "stat", "step", alt.Tooltip("improvement:Q", format=".2f")])
-        err = alt.Chart(df).mark_errorbar(color="white").encode(x="season:N", xOffset="step:N", y="lo:Q", y2="hi:Q")
+        err = alt.Chart(df).mark_errorbar(color="white").encode(x="season:N", xOffset="step:N",
+                                                               y=alt.Y("lo:Q", title="% less error"), y2="hi:Q")
         st.altair_chart(alt.layer(ch, err).properties(height=260, width=330).facet(
             column=alt.Column("stat:N", title=None, header=alt.Header(labelFontSize=14))), width="content")
         st.caption("White whiskers are 95% confidence intervals from resampling whole games. A bar whose whisker stays "
